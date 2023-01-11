@@ -52,6 +52,12 @@ Supported values, one of: 1024, 2048, 3072, 4096
 
 The `bits` query parameter is optional and only used for RS* and PS* algorithms. Default value is: 3072
 
+# Run it using Docker
+Docker image is publicly available so you can run it on your own infrastructure:
+```bash
+docker run --rm -p 3000:3000 kyberneees/jwt-keys-generator-api:latest
+```
+
 # LICENSE
 
 ```
