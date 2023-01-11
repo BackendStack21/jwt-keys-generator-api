@@ -31,7 +31,7 @@ This project allows Web browser and API clients to easily generate JWT signing/v
 - Official URL: https://jwt-keys.21no.de/ (COMING SOON)
 
 ## Backend API
-- Official URL: `https://jwt-keys.21no.de/api/generate/:ALGORITHM?bytes=BYTES&bits=BITS`
+- Official URL: `https://jwt-keys.21no.de/api/generate/ALGORITHM?bytes=BYTES&bits=BITS`
 
 ### Examples:
 - Generate RS256 key pair: https://jwt-keys.21no.de/api/generate/RS256?bits=2048
@@ -47,7 +47,8 @@ Supported values: bytes >= 12 && bytes <= 160
 The `bytes` query parameter is optional and only used for HS* algorithms. Default value is: 32
 
 #### bits (optional)
-> See: https://github.com/certbot/certbot/issues/2080
+> See: https://github.com/certbot/certbot/issues/2080  
+
 Supported values, one of: 1024, 2048, 3072, 4096
 
 The `bits` query parameter is optional and only used for RS* and PS* algorithms. Default value is: 3072
