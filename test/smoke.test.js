@@ -150,7 +150,7 @@ describe('JWT Generator API', () => {
   ASYMMETRIC_ALGORITHMS.forEach(algorithm => {
     it(`should get valid ${algorithm} key`, async function () {
       this.timeout(5000)
-      
+
       const url = `http://localhost:3000/api/generate/${algorithm}`
 
       const options = {
