@@ -1,0 +1,40 @@
+{
+  "name": "jwt-keys-generator-api",
+  "version": "1.0.0",
+  "description": "A simple and secure JSON Web Token (JWT) signing/verification keys generator that uses OpenSSL.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "npx nyc --check-coverage --lines 85 node ./node_modules/mocha/bin/mocha test/*.test.js",
+    "format": "npx standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BackendStack21/jwt-keys-generator-api.git"
+  },
+  "keywords": [
+    "jwt",
+    "keys",
+    "signing",
+    "crypto",
+    "openssl"
+  ],
+  "author": "Rolando Santamaria Maso <kyberneees@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BackendStack21/jwt-keys-generator-api/issues"
+  },
+  "homepage": "https://github.com/BackendStack21/jwt-keys-generator-api#readme",
+  "dependencies": {
+    "async-openssl": "1.0.3",
+    "restana": "^4.9.7",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "axios": "^1.2.2",
+    "chai": "^4.3.7",
+    "jsonwebtoken": "^9.0.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  }
+}
