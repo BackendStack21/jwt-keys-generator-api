@@ -18,7 +18,7 @@ jobs:
         run: npx standard
 
       - name: Install OpenSSL
-        run: apt-get update && apt-get install openssl
+        run: sudo apt-get update && sudo apt-get install openssl
 
       - name: Run tests
         run: npm run test
