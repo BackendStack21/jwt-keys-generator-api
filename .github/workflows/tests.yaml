@@ -21,4 +21,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install openssl
 
       - name: Run tests
-        run: npm run test
+        run: mkdir -p keys && npm run test
