@@ -1,26 +1,11 @@
 const restana = require('restana')
 const opensslService = require('./openssl-service')
-const fs = require('fs/promises')
 const { v4: uuidv4 } = require('uuid')
 const assert = require('assert')
 const { AssertionError } = require('assert')
 
 const ALLOWED_BITS = [1024, 2048, 3072, 4096]
-
 let OPENSSL_VERSION
-
-async function getAndDeleteKeyPair (filePrivKey, filePubKey) {
-  const [publicKey, privateKey] = await Promise.all([
-    fs.readFile(filePubKey, 'utf8'),
-    fs.readFile(filePrivKey, 'utf8')
-  ])
-  await Promise.all([
-    fs.unlink(filePubKey),
-    fs.unlink(filePrivKey)
-  ])
-
-  return { publicKey, privateKey }
-}
 
 const app = restana({})
 
@@ -48,10 +33,10 @@ app.get('/api/generate/:algorithm', async (req, res) => {
       case 'PS256':
       case 'PS384':
       case 'PS512': {
-        await opensslService(`genrsa -out ${filePrivKey} ${bits}`)
-        await opensslService(`rsa -in ${filePrivKey} -pubout -out ${filePubKey}`)
+        await opensslService.exec(`genrsa -out ${filePrivKey} ${bits}`)
+        await opensslService.exec(`rsa -in ${filePrivKey} -pubout -out ${filePubKey}`)
 
-        const { privateKey, publicKey } = await getAndDeleteKeyPair(filePrivKey, filePubKey)
+        const { privateKey, publicKey } = await opensslService.getAndDeleteKeyPair(filePrivKey, filePubKey)
 
         res.send({
           privateKey,
@@ -65,10 +50,10 @@ app.get('/api/generate/:algorithm', async (req, res) => {
       case 'HS256':
       case 'HS384':
       case 'HS512': {
-        const secret = (await opensslService(`rand -base64 ${bytes}`)).toString().trim()
+        const secret = await opensslService.exec(`rand -base64 ${bytes}`)
 
         res.send({
-          secret,
+          secret: secret.toString().trim(),
           algorithm,
           bytes,
           openssl: OPENSSL_VERSION
@@ -85,10 +70,10 @@ app.get('/api/generate/:algorithm', async (req, res) => {
           curve = 'secp384r1'
         }
 
-        await opensslService(`ecparam -genkey -name ${curve} -noout -out ${filePrivKey}`)
-        await opensslService(`ec -in ${filePrivKey} -pubout -out ${filePubKey}`)
+        await opensslService.exec(`ecparam -genkey -name ${curve} -noout -out ${filePrivKey}`)
+        await opensslService.exec(`ec -in ${filePrivKey} -pubout -out ${filePubKey}`)
 
-        const { privateKey, publicKey } = await getAndDeleteKeyPair(filePrivKey, filePubKey)
+        const { privateKey, publicKey } = await opensslService.getAndDeleteKeyPair(filePrivKey, filePubKey)
 
         res.send({
           privateKey,
@@ -111,10 +96,12 @@ app.get('/api/generate/:algorithm', async (req, res) => {
   }
 })
 
-opensslService('version').then(version => {
+opensslService.exec('version').then(version => {
   OPENSSL_VERSION = version.toString().trim()
 
-  app.start(process.env.PORT || 3000)
+  const PORT = process.env.PORT || 3000
+  app.start(PORT)
+  console.log('API successfully running on port: ' + PORT)
 }).catch(err => {
   console.error('OpenSSL integration failed: ' + err.message)
 })
