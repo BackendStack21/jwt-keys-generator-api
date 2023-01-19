@@ -58,6 +58,36 @@ Docker image is publicly available so you can run it on your own infrastructure:
 ```bash
 docker run --rm -p 3000:3000 kyberneees/jwt-keys-generator-api:latest
 ```
+Then:
+```bash
+curl -s http://localhost:3000/api/generate/ES512 | jq "."
+```
+
+## Keys Generator Script 
+Alternatively, you can use the following script which also uses Docker:
+```bash
+#!/bin/bash
+set -e
+
+ALGO="${1:-RS256}"
+echo "Algorihtm: $ALGO"
+
+echo "> launching container..."
+docker run -d -p 3000:3000 --name jwt-keys kyberneees/jwt-keys-generator-api > /dev/null
+sleep 1
+
+echo "> generating keys..."
+curl -s http://localhost:3000/api/generate/$ALGO | jq "."
+
+echo "> terminating container..."
+docker rm --force jwt-keys > /dev/null
+```
+> NOTE: Please note that only the `algorithm` argument is supported in the script!
+
+Usage: 
+```bash
+sh gen-keys.sh ES512
+```
 
 # LICENSE
 
