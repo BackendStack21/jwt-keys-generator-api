@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 ALGO="${1:-RS256}"
 echo "Algorihtm: $ALGO"
 

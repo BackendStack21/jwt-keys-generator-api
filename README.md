@@ -67,8 +67,6 @@ curl -s http://localhost:3000/api/generate/ES512 | jq "."
 Alternatively, you can use the following script which also uses Docker:
 ```bash
 #!/bin/bash
-set -e
-
 ALGO="${1:-RS256}"
 echo "Algorihtm: $ALGO"
 
