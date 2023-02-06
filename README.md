@@ -28,7 +28,7 @@ This project allows Web browser and API clients to easily generate JWT signing/v
 * All keys are expected to be generated on the backend using `OpenSSL` to increase security. 
 
 ## Frontend 
-- Official URL: https://jwt-keys.21no.de/ (COMING SOON)
+- Official Frontend URL: https://jwt-keys.21no.de/
 
 ## Backend API
 - Official URL: `https://jwt-keys.21no.de/api/generate/ALGORITHM?bytes=BYTES&bits=BITS`
@@ -92,7 +92,7 @@ sh gen-keys.sh ES512
 ```
 MIT License
 
-Copyright (c) 2023 BackendStack21.js
+Copyright (c) 2023 21no.de
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
