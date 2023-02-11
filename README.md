@@ -1,4 +1,7 @@
 # JWT Keys Generator API
+[![tests](https://github.com/BackendStack21/jwt-keys-generator-api/actions/workflows/tests.yaml/badge.svg)](https://github.com/BackendStack21/jwt-keys-generator-api/actions/workflows/tests.yaml)
+[![build images](https://github.com/BackendStack21/jwt-keys-generator-api/actions/workflows/build_images.yaml/badge.svg?branch=main)](https://github.com/BackendStack21/jwt-keys-generator-api/actions/workflows/build_images.yaml)
+
 *A simple and secure JSON Web Token (JWT) signing/verification keys generator that uses OpenSSL.*
 > WE DON'T DO tracking, tracing or logging of API usage!  
 > This is an API for the community 💚 
