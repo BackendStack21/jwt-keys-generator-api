@@ -1,6 +1,6 @@
 {
   "name": "jwt-keys-generator-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple and secure JSON Web Token (JWT) signing/verification keys generator that uses OpenSSL.",
   "main": "index.js",
   "private": true,
