@@ -9,8 +9,8 @@ const jwt = require('jsonwebtoken')
 describe('JWT Generator API', () => {
   let server
 
-  it('initialize', function (done) {
-    this.timeout(3000)
+  it('initialize', async function () {
+    this.timeout(10000)
 
     server = spawn('node', ['server.js'], {
       shell: true,
@@ -20,9 +20,21 @@ describe('JWT Generator API', () => {
       }
     })
 
-    setTimeout(() => {
-      done()
-    }, 2800)
+    // Wait for the server to become healthy instead of a fixed delay,
+    // which is flaky on slower CI runners.
+    const url = 'http://localhost:3000/api/health/status'
+    const deadline = Date.now() + 9000
+    while (true) {
+      try {
+        await axios.request({ method: 'GET', url })
+        return
+      } catch (err) {
+        if (Date.now() >= deadline) {
+          throw new Error('Server did not become healthy in time')
+        }
+        await new Promise(resolve => setTimeout(resolve, 200))
+      }
+    }
   })
 
   it('service should be healthy', async () => {
