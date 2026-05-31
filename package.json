@@ -36,5 +36,10 @@
     "jsonwebtoken": "^9.0.3",
     "mocha": "^11.7.6",
     "nyc": "^18.0.0"
+  },
+  "overrides": {
+    "diff": "^9.0.0",
+    "serialize-javascript": "^7.0.5",
+    "uuid": "^14.0.0"
   }
 }
