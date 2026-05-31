@@ -32,17 +32,15 @@ This project allows Web browser and API clients to easily generate JWT signing/v
 * For `HS*` keys, there is only private key (aka `secret`) and it is randomly generated using OpenSSL. 
 * All keys are expected to be generated on the backend using `OpenSSL` to increase security. 
 
-## Frontend 
-- Official Frontend URL: https://jwt-keys.21no.de/
-
 ## Backend API
-- Official URL: `https://jwt-keys.21no.de/api/generate/ALGORITHM?bytes=BYTES&bits=BITS`
+Run the service yourself (see [Run it using Docker](#run-it-using-docker) below) and call it locally:
+- URL pattern: `http://localhost:3000/api/generate/ALGORITHM?bytes=BYTES&bits=BITS`
 
 ### Examples:
-- Generate RS256 key pair: https://jwt-keys.21no.de/api/generate/RS256?bits=2048
-- Generate PS256 key pair: https://jwt-keys.21no.de/api/generate/PS256?bits=2048
-- Generate HS256 key pair: https://jwt-keys.21no.de/api/generate/HS256?bytes=32
-- Generate ES512 key pair: https://jwt-keys.21no.de/api/generate/ES512
+- Generate RS256 key pair: http://localhost:3000/api/generate/RS256?bits=2048
+- Generate PS256 key pair: http://localhost:3000/api/generate/PS256?bits=2048
+- Generate HS256 key pair: http://localhost:3000/api/generate/HS256?bytes=32
+- Generate ES512 key pair: http://localhost:3000/api/generate/ES512
 
 ### Parameters
 #### bytes (optional)
