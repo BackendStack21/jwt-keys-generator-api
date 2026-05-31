@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/BackendStack21/jwt-keys-generator-api#readme",
   "dependencies": {
-    "async-openssl": "1.0.3",
-    "restana": "^5.0.0",
-    "uuid": "^11.0.5"
+    "async-openssl": "^1.0.3",
+    "restana": "^6.0.0",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "axios": "^1.7.9",
-    "chai": "^4.3.7",
-    "jsonwebtoken": "^9.0.2",
-    "mocha": "^11.1.0",
-    "nyc": "^17.1.0"
+    "axios": "^1.16.1",
+    "chai": "^6.2.2",
+    "jsonwebtoken": "^9.0.3",
+    "mocha": "^11.7.6",
+    "nyc": "^18.0.0"
   }
 }
